@@ -25,7 +25,7 @@ site: stackoverflow
 client_id: 123
 key: 50m3 l0n9 h#
 ```
-Then run auto_setup.py. This can be useful for IPython:
+Then run auto_setup.py. This approach is useful if you plan on using the client in IPython (since then you don't need to copy/paste the credentials every time you want to use the client): 
 ```python
 In [1]: %run auto_setup.py
 Object client ready.
@@ -58,11 +58,17 @@ Out[2]:
 ### Some Examples
 As mentioned above, the client maps closely onto the API's endpoints, so it's easy to use the API documentation to figure out how to make the calls you want. For example, here's what the [documentation](https://api.stackexchange.com/docs) says about answers:
 ```
-/answers                          Get all answers on the site.
-/answers/{ids}                  Get answers identified by a set of ids.
-/answers/{ids}/comments Get comments on the answers identified by a set of ids.
+/answers                                                Get all answers on the site.
+/answers/{ids}                                          Get answers identified by a set of ids.
+/answers/{ids}/comments                                 Get comments on the answers identified by a set of ids.
 ```
 And here's how it looks with the client:
+```
+client.answers.get()                                    Get all answers on the site.
+client.answers.ids(<int_or_int_list>).get()             Get answers identified by a set of ids.
+client.answers.ids(<int_or_int_list>).comments.get()    Get comments on the answers identified by a set of ids.
+```
+Or, for some concrete examples:
 ```python
 In [1] client.answers.get()
 Out[1] <response omitted>
