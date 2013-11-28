@@ -34,20 +34,28 @@ class TagsIds(BaseHTTPClient):
 
 class TopTagsSuffix(BaseHTTPClient):
 
-    def periods(self, month_or_all_time):
+    @property
+    def month(self):
+        return self._periods('month')
+
+    @property
+    def all_time(self):
+        return self._periods('all_time')
+
+    def _periods(self, month_or_all_time):
         if month_or_all_time not in ['month', 'all_time']:
             raise Exception('Input {} must be equal to either "month" or "all_time"'.format(month_or_all_time))
 
-        return BaseHTTPClient(self.url + '/{}'.format(month_or_all_time))
+        return BaseHTTPClient(self.url + '{}/'.format(month_or_all_time), self.queryvars)
 
 
 class Tags(BaseHTTPClient):
 
-    def ids(self, id_or_ids):
-        if isinstance(id_or_ids, list):
-            url = self.url + ';'.join(str(input_id) for input_id in id_or_ids) + '/'
+    def tags(self, tag_or_tags):
+        if isinstance(tag_or_tags, list):
+            url = self.url + ';'.join(str(tag) for tag in tag_or_tags) + '/'
         else:
-            url = self.url + str(id_or_ids) + '/'
+            url = self.url + str(tag_or_tags) + '/'
         return TagsIds(url, self.queryvars)
 
     @property

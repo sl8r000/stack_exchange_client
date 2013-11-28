@@ -118,7 +118,6 @@ class UsersIds(BaseHTTPClient):
         url = self.url + 'suggested-edits/'
         return BaseHTTPClient(url, self.queryvars)
 
-    # missing {tags}/top-answers and {tags}/top-questions functionality
     @property
     def tags(self):
         url = self.url + 'tags/'
@@ -153,7 +152,6 @@ class Moderators(BaseHTTPClient):
 
 class Users(BaseHTTPClient):
 
-    # Missing elected functionality
     @property
     def moderators(self):
         url = self.url + 'moderators/'

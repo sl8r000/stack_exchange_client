@@ -49,3 +49,6 @@ validation/*/*.json
 
 # Path Setting
 setpaths.sh
+
+# config
+config.ini

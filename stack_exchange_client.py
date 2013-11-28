@@ -11,12 +11,15 @@ from revisions import Revisions
 from suggested_edits import SuggestedEdits
 
 
-
 class Search(BaseHTTPClient):
 
     @property
     def advanced(self):
         return BaseHTTPClient(self.url + 'advanced/', self.queryvars)
+
+
+class Similar(BaseHTTPClient):
+    pass
 
 
 class StackExchangeClient(object):
@@ -79,6 +82,10 @@ class StackExchangeClient(object):
     @property
     def search(self):
         return Search(self.url + 'search/', self.queryvars)
+
+    @property
+    def similar(self):
+        return Similar(self.url + 'search/', self.queryvars)
 
     @property
     def tags(self):
