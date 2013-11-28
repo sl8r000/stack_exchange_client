@@ -25,11 +25,20 @@ class TagsIds(BaseHTTPClient):
 
     @property
     def top_askers(self):
-        return BaseHTTPClient(self.url + 'top-askers/all_time', self.queryvars)
+        return TopTagsSuffix(self.url + 'top-askers/', self.queryvars)
 
     @property
     def top_answerers(self):
-        return BaseHTTPClient(self.url + 'top-answerers/all_time', self.queryvars)
+        return TopTagsSuffix(self.url + 'top-answerers/', self.queryvars)
+
+
+class TopTagsSuffix(BaseHTTPClient):
+
+    def periods(self, month_or_all_time):
+        if month_or_all_time not in ['month', 'all_time']:
+            raise Exception('Input {} must be equal to either "month" or "all_time"'.format(month_or_all_time))
+
+        return BaseHTTPClient(self.url + '/{}'.format(month_or_all_time))
 
 
 class Tags(BaseHTTPClient):

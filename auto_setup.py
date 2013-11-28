@@ -12,3 +12,5 @@ if __name__ == '__main__':
 
     if client_id != '' and key != '' and site != '':
         client = StackExchangeClient(site=site, client_id=int(client_id), key=key)
+
+    print 'Object client ready.'

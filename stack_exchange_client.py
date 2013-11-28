@@ -4,6 +4,12 @@ from comments import Comments
 from questions import Questions
 from users import Users
 from tags import Tags
+from badges import Badges
+from posts import Posts
+from privileges import Privileges
+from revisions import Revisions
+from suggested_edits import SuggestedEdits
+
 
 
 class Search(BaseHTTPClient):
@@ -31,14 +37,39 @@ class StackExchangeClient(object):
         return Answers(url, self.queryvars)
 
     @property
+    def badges(self):
+        url = self.url + 'badges/'
+        return Badges(url, self.queryvars)
+
+    @property
     def comments(self):
         url = self.url + 'comments/'
         return Comments(url, self.queryvars)
 
     @property
+    def posts(self):
+        url = self.url + 'posts/'
+        return Posts(url, self.queryvars)
+
+    @property
     def questions(self):
         url = self.url + 'questions/'
         return Questions(url, self.queryvars)
+
+    @property
+    def revisions(self):
+        url = self.url + 'revisions/'
+        return Revisions(url, self.queryvars)
+
+    @property
+    def privileges(self):
+        url = self.url + 'privileges/'
+        return Privileges(url, self.queryvars)
+
+    @property
+    def suggested_edits(self):
+        url = self.url + 'suggested_edits/'
+        return SuggestedEdits(url, self.queryvars)
 
     @property
     def users(self):

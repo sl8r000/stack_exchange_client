@@ -14,3 +14,8 @@ class BaseHTTPClient(object):
 
         response = response.json(strict=False)
         return response['items']
+
+    # The lazy man's alias for self.get()
+    @property
+    def g(self):
+        return self.get()
